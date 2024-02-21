@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	pg "github.com/prontogui/pgui-go/callme"
+	pg "github.com/prontogui/golib"
 )
 
 func main() {
