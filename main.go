@@ -17,10 +17,22 @@ func main() {
 
 	flag.Parse()
 
+	err := pgcomm.StartServing("127.0.0.1", 50053)
+
+	if err != nil {
+		fmt.Printf("Error trying to start server:  %s", err.Error())
+		return
+	}
+
 	if *pings > 0 {
 		for i := 1; i <= *pings; i++ {
-			fmt.Printf("Ping #%d", i)
-			pgcomm.ExchangeUpdates([]byte{'p', 'i', 'n', 'g'})
+			fmt.Printf("Ping #%d\n", i)
+			ok, update := pgcomm.ExchangeUpdates([]byte{'p', 'i', 'n', 'g'})
+			if !ok {
+				fmt.Print("Error while exchanging updates.  Exiting.")
+				return
+			}
+			fmt.Printf("Response: %s\n", string(update))
 			time.Sleep(5 * time.Second)
 		}
 
