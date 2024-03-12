@@ -27,12 +27,12 @@ func main() {
 	if *pings > 0 {
 		for i := 1; i <= *pings; i++ {
 			fmt.Printf("Ping #%d\n", i)
-			ok, update := pgcomm.ExchangeUpdates([]byte{'p', 'i', 'n', 'g'})
-			if !ok {
-				fmt.Print("Error while exchanging updates.  Exiting.")
+			update, err := pgcomm.ExchangeUpdates("ping")
+			if err != nil {
+				fmt.Printf("Error while exchanging updates: %s.  Exiting.", err.Error())
 				return
 			}
-			fmt.Printf("Response: %s\n", string(update))
+			fmt.Printf("Response: %s\n", update.(string))
 			time.Sleep(5 * time.Second)
 		}
 
