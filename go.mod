@@ -1,8 +1,8 @@
 module github.com/prontogui/pgui-go-examples/helloworld
 
-go 1.21.6
+go 1.22.1
 
-require github.com/prontogui/golib v0.0.8
+require github.com/prontogui/golib v0.0.10
 
 require (
 	github.com/fxamacker/cbor/v2 v2.5.0 // indirect

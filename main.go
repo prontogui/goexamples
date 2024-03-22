@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"time"
 
-	pg "github.com/prontogui/golib"
 	pgcomm "github.com/prontogui/golib/pgcomm"
 )
 
@@ -36,7 +35,5 @@ func main() {
 			time.Sleep(5 * time.Second)
 		}
 
-	} else {
-		fmt.Println(pg.CallMe())
 	}
 }
