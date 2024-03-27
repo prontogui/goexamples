@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	pgcomm "github.com/prontogui/golib/pgcomm"
+	pg "github.com/prontogui/golib"
 )
 
 var (
@@ -16,24 +16,33 @@ func main() {
 
 	flag.Parse()
 
-	err := pgcomm.StartServing("127.0.0.1", 50053)
+	pgui := pg.NewProntoGUI()
+	err := pgui.StartServing("127.0.0.1", 50053)
 
 	if err != nil {
 		fmt.Printf("Error trying to start server:  %s", err.Error())
 		return
 	}
 
+	// Build the GUI model
+	cmd := pg.Command{}
+	pgui.SetGUI(&cmd)
+
 	if *pings > 0 {
 		for i := 1; i <= *pings; i++ {
-			fmt.Printf("Ping #%d\n", i)
-			update, err := pgcomm.ExchangeUpdates("ping")
+			pingMsg := fmt.Sprintf("Ping #%d\n", i)
+			fmt.Println(pingMsg)
+
+			cmd.SetLabel(pingMsg)
+
+			err := pgui.Wait()
 			if err != nil {
-				fmt.Printf("Error while exchanging updates: %s.  Exiting.", err.Error())
-				return
+				fmt.Printf("error from Wait() is:  %s\n", err.Error())
+				break
 			}
-			fmt.Printf("Response: %s\n", update.(string))
 			time.Sleep(5 * time.Second)
 		}
-
 	}
+
+	pgui.StopServing()
 }

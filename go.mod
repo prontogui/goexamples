@@ -2,10 +2,10 @@ module github.com/prontogui/pgui-go-examples/helloworld
 
 go 1.22.1
 
-require github.com/prontogui/golib v0.0.10
+require github.com/prontogui/golib v0.0.12
 
 require (
-	github.com/fxamacker/cbor/v2 v2.5.0 // indirect
+	github.com/fxamacker/cbor/v2 v2.6.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	golang.org/x/net v0.20.0 // indirect
