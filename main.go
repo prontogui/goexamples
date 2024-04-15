@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	pings = flag.Int("pings", 0, "Do testing of communication by sending N pings to app (0 = no pings).")
+	pings = flag.Int("pings", 10, "Do testing of communication by sending N pings to app (0 = no pings).")
 )
 
 func main() {
