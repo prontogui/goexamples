@@ -25,15 +25,17 @@ func main() {
 	}
 
 	// Build the GUI model
+	txt := pg.Text{}
 	cmd := pg.Command{}
-	pgui.SetGUI(&cmd)
+	cmd.SetLabel("Click Me!")
+	pgui.SetGUI(&txt, &cmd)
 
 	if *pings > 0 {
 		for i := 1; i <= *pings; i++ {
 			pingMsg := fmt.Sprintf("Ping #%d\n", i)
 			fmt.Println(pingMsg)
 
-			cmd.SetLabel(pingMsg)
+			txt.SetContent(pingMsg)
 
 			err := pgui.Wait()
 			if err != nil {
