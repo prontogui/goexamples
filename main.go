@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"time"
 
 	pg "github.com/prontogui/golib"
+	"github.com/prontogui/golib/primitive"
 )
 
 var (
@@ -25,26 +25,62 @@ func main() {
 	}
 
 	// Build the GUI model
-	txt := pg.Text{}
-	cmd := pg.Command{}
-	cmd.SetLabel("Click Me!")
-	pgui.SetGUI(&txt, &cmd)
+	txt := pg.TextWith{Content: "Nice to meet you."}.Make()
+	cmd := pg.CommandWith{Label: "Click Me!"}.Make()
+	choice := pg.ChoiceWith{Choices: []string{"Apple", "Orange", "Banana"}, Choice: "Apple"}.Make()
+	chk := pg.CheckWith{Label: "Turn this on or off"}.Make()
+	tri := pg.TristateWith{Label: "Vote for biden or trump."}.Make()
+	grp := pg.GroupWith{GroupItems: []primitive.Interface{txt, cmd, choice, chk, tri}}.Make()
+	pgui.SetGUI(grp)
 
-	if *pings > 0 {
-		for i := 1; i <= *pings; i++ {
-			pingMsg := fmt.Sprintf("Ping #%d\n", i)
-			fmt.Println(pingMsg)
+	for {
+		err := pgui.Wait()
+		if err != nil {
+			fmt.Printf("error from Wait() is:  %s\n", err.Error())
+			break
+		}
 
-			txt.SetContent(pingMsg)
-
-			err := pgui.Wait()
-			if err != nil {
-				fmt.Printf("error from Wait() is:  %s\n", err.Error())
-				break
+		if cmd.Issued() {
+			fmt.Print("Command clicked.")
+		}
+		if choice.Changed() {
+			fmt.Printf("Choice '%s' is a good one.", choice.Choice())
+		}
+		if chk.Changed() {
+			if chk.Checked() {
+				fmt.Print("Check is turned ON.")
+			} else {
+				fmt.Printf("Check is turned off.")
 			}
-			time.Sleep(5 * time.Second)
+		}
+		if tri.Changed() {
+			state := tri.State()
+			if state == 0 {
+				fmt.Print("Trump = 0")
+			} else if state == 1 {
+				fmt.Print("Biden = 1")
+			} else {
+				fmt.Print("Undecided = 2")
+			}
 		}
 	}
+	/*
+		if *pings > 0 {
+			for i := 1; i <= *pings; i++ {
+				pingMsg := fmt.Sprintf("Ping #%d\n", i)
+				fmt.Println(pingMsg)
+
+				txt.SetContent(pingMsg)
+
+				err := pgui.Wait()
+				if err != nil {
+					fmt.Printf("error from Wait() is:  %s\n", err.Error())
+					break
+				}
+				time.Sleep(5 * time.Second)
+			}
+		}
+	*/
 
 	pgui.StopServing()
 }
