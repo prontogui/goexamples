@@ -34,33 +34,33 @@ func main() {
 	pgui.SetGUI(grp)
 
 	for {
-		err := pgui.Wait()
+		updatedPrimitive, err := pgui.Wait()
 		if err != nil {
 			fmt.Printf("error from Wait() is:  %s\n", err.Error())
 			break
 		}
 
-		if cmd.Issued() {
-			fmt.Print("Command clicked.")
+		if updatedPrimitive == cmd {
+			fmt.Println("Command clicked.")
 		}
-		if choice.Changed() {
-			fmt.Printf("Choice '%s' is a good one.", choice.Choice())
+		if updatedPrimitive == choice {
+			fmt.Printf("Choice '%s' is a good one.\n", choice.Choice())
 		}
-		if chk.Changed() {
+		if updatedPrimitive == chk {
 			if chk.Checked() {
-				fmt.Print("Check is turned ON.")
+				fmt.Println("Check is turned ON.")
 			} else {
-				fmt.Printf("Check is turned off.")
+				fmt.Println("Check is turned off.")
 			}
 		}
-		if tri.Changed() {
+		if updatedPrimitive == tri {
 			state := tri.State()
 			if state == 0 {
-				fmt.Print("Trump = 0")
+				fmt.Println("Trump = 0")
 			} else if state == 1 {
-				fmt.Print("Biden = 1")
+				fmt.Println("Biden = 1")
 			} else {
-				fmt.Print("Undecided = 2")
+				fmt.Println("Undecided = 2")
 			}
 		}
 	}
