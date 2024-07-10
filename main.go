@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	demo = flag.String("demo", "timer", "Specify the demo to run.  Choices are:  frame, list1, list2, list3, table, textfield, timer, misc, ...")
+	demo = flag.String("demo", "timer", "Specify the demo to run.  Choices are:  frame, list1, list2, list3, table, textfield, timer, misc, blank, simple, ...")
 )
 
 func main() {
@@ -51,6 +51,12 @@ func main() {
 	case "timer":
 		fmt.Print("Running timer demo\n")
 		timerdemo(pgui)
+	case "blank":
+		fmt.Print("Running blank demo\n")
+		blankDemo(pgui)
+	case "simple":
+		fmt.Print("Running simple demo\n")
+		simpleDemo(pgui)
 	default:
 		fmt.Printf("Unknown demo selected at command line.  Exiting.")
 	}
