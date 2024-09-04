@@ -12,9 +12,20 @@ func miscDemo(pgui pg.ProntoGUI) {
 	cmd := pg.CommandWith{Label: "Click Me!"}.Make()
 	choice := pg.ChoiceWith{Choices: []string{"Apple", "Orange", "Banana"}, Choice: "Apple"}.Make()
 	chk := pg.CheckWith{Label: "Turn this on or off"}.Make()
-	tri := pg.TristateWith{Label: "Vote for biden or trump."}.Make()
+	tri := pg.TristateWith{Label: "Select all toppings"}.Make()
+	spacer := pg.TextWith{Content: " "}.Make()
 
-	grp := pg.GroupWith{GroupItems: []pg.Primitive{txt, cmd, choice, chk, tri}}.Make()
+	grp := pg.GroupWith{GroupItems: []pg.Primitive{
+		txt,
+		spacer,
+		cmd,
+		spacer,
+		choice,
+		spacer,
+		chk,
+		spacer,
+		tri,
+	}}.Make()
 
 	pgui.SetGUI(grp)
 

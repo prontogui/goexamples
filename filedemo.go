@@ -16,7 +16,9 @@ func filedemo(pgui pg.ProntoGUI) {
 	exportFile := &pg.ExportFile{}
 	grp2 := pg.GroupWith{GroupItems: []pg.Primitive{txt2, exportFile}}.Make()
 
-	pgui.SetGUI(grp1, grp2)
+	spacer := pg.TextWith{Content: " "}.Make()
+
+	pgui.SetGUI(spacer, grp1, spacer, grp2)
 
 	for {
 		updatedPrimitive, err := pgui.Wait()

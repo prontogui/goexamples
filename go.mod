@@ -1,4 +1,4 @@
-module github.com/prontogui/pgui-go-examples/helloworld
+module github.com/prontogui/goexamples
 
 go 1.22.1
 
