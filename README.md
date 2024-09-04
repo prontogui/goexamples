@@ -1,2 +1,2 @@
-# pgui-go-examples
+# goexamples
 Examples of ProntoGUI used in the Go language.
