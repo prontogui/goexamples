@@ -33,8 +33,8 @@ func listDemo2(pgui pg.ProntoGUI) {
 		pg.CommandWith{Label: "..."}.Make(),
 	}}.Make()
 	list := pg.ListWith{
-		ListItems:    []pg.Primitive{item1, item2, item3, item4},
-		TemplateItem: item1,
+		ListItems:  []pg.Primitive{item1, item2, item3, item4},
+		Embodiment: "card-list",
 	}.Make()
 	pgui.SetGUI(list)
 	pgui.Wait()

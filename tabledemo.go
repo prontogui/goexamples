@@ -12,13 +12,6 @@ func tabledemo(pgui pg.ProntoGUI) {
 
 	t := pg.TableWith{
 		Headings: []string{"Qty", "Description", "Price", "Subtotal", "Action"},
-		TemplateRow: []pg.Primitive{
-			pg.TextWith{}.Make(),
-			pg.TextWith{}.Make(),
-			pg.TextWith{}.Make(),
-			pg.TextWith{}.Make(),
-			pg.CommandWith{}.Make(),
-		},
 		Rows: [][]pg.Primitive{
 			{
 				pg.TextWith{Content: "10"}.Make(),

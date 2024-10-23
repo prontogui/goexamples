@@ -13,8 +13,7 @@ func listDemo1(pgui pg.ProntoGUI) {
 	li4 := pg.TextWith{Content: "D"}.Make()
 	li5 := pg.TextWith{Content: "E"}.Make()
 	list := pg.ListWith{
-		ListItems:    []pg.Primitive{li1, li2, li3, li4, li5},
-		TemplateItem: pg.TextWith{}.Make(),
+		ListItems: []pg.Primitive{li1, li2, li3, li4, li5},
 	}.Make()
 
 	pgui.SetGUI(list)

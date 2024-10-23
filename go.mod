@@ -2,7 +2,7 @@ module github.com/prontogui/goexamples
 
 go 1.22.1
 
-require github.com/prontogui/golib v0.0.39
+require github.com/prontogui/golib v0.0.53
 
 require (
 	github.com/fxamacker/cbor/v2 v2.6.0 // indirect

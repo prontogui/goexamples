@@ -13,7 +13,10 @@ func timerdemo(pgui pg.ProntoGUI) {
 	reading := pg.TextWith{Content: ""}.Make()
 	cmd := pg.CommandWith{Label: "+100"}.Make()
 
-	pgui.SetGUI(timer, txt, reading, cmd)
+	// Set the GUI.  Note:  we wrap the reading in a group to improve the rendering
+	// performance.  This is because the reading is updated frequently and we don't
+	// want to re-render the entire GUI each time it changes.
+	pgui.SetGUI(timer, txt, pg.NewGroup(reading), cmd)
 
 	ticker := 0.0
 
