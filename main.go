@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	demo = flag.String("demo", "bingo", "Specify the demo to run.  Choices are:  frame, list1, list2, table1, table2, table3, bingo, textfield, timer, misc, blank, snackbar, image, or simple.")
+	demo = flag.String("demo", "bingo", "Specify the demo to run.  Choices are:  frame, list1, list2, list3, table1, table2, table3, bingo, textfield, timer, misc, blank, snackbar, image, or simple.")
 )
 
 func main() {
@@ -38,6 +38,9 @@ func main() {
 	case "list2":
 		fmt.Printf("Running list2 demo\n")
 		listDemo2(pgui)
+	case "list3":
+		fmt.Printf("Running list3 demo\n")
+		listDemo3(pgui)
 	case "textfield":
 		fmt.Printf("Running textfield demo\n")
 		textFieldDemo(pgui)

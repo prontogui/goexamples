@@ -7,7 +7,7 @@ toolchain go1.24.2
 require github.com/prontogui/golib v1.0.0-rc1
 
 // For development purposes...
-//replace github.com/prontogui/golib => ../golib_nats
+replace github.com/prontogui/golib => ../golib
 
 require (
 	github.com/fxamacker/cbor/v2 v2.6.0 // indirect
