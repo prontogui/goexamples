@@ -4,10 +4,10 @@ go 1.23.0
 
 toolchain go1.24.2
 
-require github.com/prontogui/golib v1.0.0-rc1
+require github.com/prontogui/golib v1.0.0-rc3
 
 // For development purposes...
-replace github.com/prontogui/golib => ../golib
+//replace github.com/prontogui/golib => ../golib
 
 require (
 	github.com/fxamacker/cbor/v2 v2.6.0 // indirect
